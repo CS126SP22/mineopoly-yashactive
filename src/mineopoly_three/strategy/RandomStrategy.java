@@ -5,10 +5,8 @@ import mineopoly_three.action.TurnAction;
 import mineopoly_three.item.InventoryItem;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.EnumSet;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 
 /**
  * This class implements a strategy that selects a move completely at random and performs it.
@@ -19,6 +17,7 @@ public class RandomStrategy implements MinePlayerStrategy {
     private Random random;
     private List<TurnAction> allPossibleActions;
     private int pickUpActionIndex;
+    private Map<Point, List<InventoryItem>> itemsOnBoard;
 
     @Override
     public void initialize(int boardSize, int maxInventorySize, int maxCharge, int winningScore,
@@ -27,6 +26,8 @@ public class RandomStrategy implements MinePlayerStrategy {
         this.allPossibleActions = new ArrayList<>(EnumSet.allOf(TurnAction.class));
         allPossibleActions.add(null); // Doing nothing at all is a possible action
         this.pickUpActionIndex = allPossibleActions.indexOf(TurnAction.PICK_UP_RESOURCE);
+        itemsOnBoard = startingBoard.getItemsOnGround();
+
     }
 
     @Override
