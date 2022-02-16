@@ -113,7 +113,7 @@ public class MyPlayerStrategyTests {
         assertEquals(strategy.getDirectionToGo(),TurnAction.MOVE_UP);
 
     }
-
+    // Tried to test this
     @Test
     public void testToMine() {
         strategy.toMine(boardView);
