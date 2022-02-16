@@ -2,6 +2,7 @@ import mineopoly_three.strategy.MyPlayerStrategy;
 import mineopoly_three.item.*;
 import mineopoly_three.action.TurnAction;
 import mineopoly_three.item.InventoryItem;
+import mineopoly_three.strategy.PlayerBoardView;
 import mineopoly_three.tiles.TileType;
 import static org.junit.Assert.assertEquals;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 
 public class MyPlayerStrategyTests {
     private MyPlayerStrategy strategy;
+    private PlayerBoardView boardView;
     private List<InventoryItem> itemInventory = new ArrayList<>();
     private Map<String, List<Point>> boardResourceMap = new HashMap<>();
     private List<Point> testList = new ArrayList<>();
@@ -32,6 +34,7 @@ public class MyPlayerStrategyTests {
     @Before
     public void setUp() {
         strategy = new MyPlayerStrategy();
+        //boardView = new PlayerBoardView();
         one = new Point(10,10);
         two = new Point(11,10);
         three = new Point(9,10);
@@ -109,6 +112,12 @@ public class MyPlayerStrategyTests {
         strategy.decideDirectionToMove(one,three);
         assertEquals(strategy.getDirectionToGo(),TurnAction.MOVE_UP);
 
+    }
+
+    @Test
+    public void testToMine() {
+        strategy.toMine(boardView);
+        assertEquals(strategy.getDirectionToGo(), TurnAction.MINE);
     }
 
 

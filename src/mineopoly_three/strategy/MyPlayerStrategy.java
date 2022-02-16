@@ -117,6 +117,10 @@ public class MyPlayerStrategy implements MinePlayerStrategy {
             } else {
                 return directionToGo;
             }
+        } else if (DistanceUtil.getManhattanDistance(currentGameState.getYourLocation(), currentGameState.getOtherPlayerLocation()) == 1) {
+            if ((isRedTurn == true && isRedPlayer == false) || (isRedTurn == false && isRedPlayer == true)) {
+                directionToGo = null;
+            }
         }
         return directionToGo;
     }
@@ -237,7 +241,7 @@ public class MyPlayerStrategy implements MinePlayerStrategy {
     public TurnAction getDirectionToGo() {
         return directionToGo;
     }
-
+    /** setter to assist with testing */
     public void setBoardResourceMap(String l, List<Point> k) {
         boardResourceMap.put(l,k);
     }
